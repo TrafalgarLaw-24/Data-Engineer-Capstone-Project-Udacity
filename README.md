@@ -119,3 +119,6 @@ Ans: For the best result output the data should be updated monthly in conjunctio
     * The database needed to be accessed by 100+ people.
 
         Ans: If the database is needed to be accessed by 100+ people, we could consider publishing the parquet files to AWS S3 (object store)/HDFS and giving read access to users that need it. If the users want to run SQL queries on the raw data, we could then consider publishing to HDFS using a tool such as Impala.
+
+## About
+This project is done as part of Udacity Data Engineer Nano degree program
