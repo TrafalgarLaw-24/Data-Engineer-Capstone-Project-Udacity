@@ -6,16 +6,16 @@ In this project our goal is to create an ETL pipeline with the 'I94 immigration 
 
 ## Steps followed in the project
 
-Step 1: Scope the Project and Gather Data
-Step 2: Explore and Assess the Data
-Step 3: Define the Data Model
-Step 4: Run ETL to Model the Data
-Step 5: Complete Project Write Up
+* Step 1: Scope the Project and Gather Data
+* Step 2: Explore and Assess the Data
+* Step 3: Define the Data Model
+* Step 4: Run ETL to Model the Data
+* Step 5: Complete Project Write Up
 
 ### Step 1: Scope the Project and Gather Data
 
 #### Scope
-We are going to aggregate I94 immigration data by destination city to form our 1st Dimension table. Next we are gpoing to aggregate city temperature data by city to form the 2nd Dimension table. The two datasets will be joined on the destination city to form the Fact table. The final database is optimized accordingly to query on immigration events to determine if temperature affects the selection of destination cities. 'Apache Spark' will be used to process the data present.
+We are going to aggregate I94 immigration data by destination city to form our 1st Dimension table. Next we are going to aggregate city temperature data by city to form the 2nd Dimension table. The two datasets will be joined on the destination city to form the Fact table. The final database is optimized accordingly to query on immigration events to determine if temperature affects the selection of destination cities. 'Apache Spark' will be used to process the data present.
 
 #### Describe and Gather Data
 This I94 immigration data comes from the US National Tourism and Trade Office and it is provided in SAS7BDAT format. We will be using the attributes such as,
@@ -105,14 +105,14 @@ Ans: For the best result output the data should be updated monthly in conjunctio
 
 * Write a description of how you would approach the problem differently under the following scenarios:
 
-  * The data was increased by 100x.
+    * The data was increased by 100x.
 
-    Ans: For scenario where the data is increased by 100x, we could no longer process the data available as a single batch job. One of the idea would be to do incremental updates using a tool such as Uber's Hudi. We could also consider moving to a cloud service where we can take advantage of services such as AWS EMR or Azure databrick where Spark can be run in cluster mode using a cluster manager such as Yarn.
+      Ans: For scenario where the data is increased by 100x, we could no longer process the data available as a single batch job. One of the idea would be to do incremental updates using a tool such as Uber's Hudi. We could also consider moving to a cloud service where we can take advantage of services such as AWS EMR or Azure databrick where Spark can be run in cluster mode using a cluster manager such as Yarn.
 
     * The data populates a dashboard that must be updated on a daily basis by 7am every day.
 
       Ans: If the data needs to populate a dashboard daily to meet an SLA then we could use a AWS EMR in conjunction with Control-M to setup scheduled jobs or we can use scheduling tool such as Airflow to run the ETL pipeline.
 
-      * The database needed to be accessed by 100+ people.
+    * The database needed to be accessed by 100+ people.
 
         Ans: If the database is needed to be accessed by 100+ people, we could consider publishing the parquet files to AWS S3 (object store)/HDFS and giving read access to users that need it. If the users want to run SQL queries on the raw data, we could then consider publishing to HDFS using a tool such as Impala.
