@@ -20,22 +20,22 @@ We are going to aggregate I94 immigration data by destination city to form our 1
 #### Describe and Gather Data
 This I94 immigration data comes from the US National Tourism and Trade Office and it is provided in SAS7BDAT format. We will be using the attributes such as,
 
-i94cit = 3 digit code of origin city
-i94port = 3 character code of destination USA city
-arrdate = arrival date in the USA
-i94yr = 4 digit year
-i94mon = numeric month
-i94mode = 1 digit travel code
-depdate = departure date from the USA
-i94visa = reason for immigration
+1. i94cit = 3 digit code of origin city
+2. i94port = 3 character code of destination USA city
+3. arrdate = arrival date in the USA
+4. i94yr = 4 digit year
+5. i94mon = numeric month
+6. i94mode = 1 digit travel code
+7. depdate = departure date from the USA
+8. i94visa = reason for immigration
 
 The temperature data comes from Kaggle. It is provided in csv format. We will be using attributes such as,
 
-Latitude= latitude
-Longitude = longitude
-AverageTemperature = average temperature
-City = city name
-Country = country name
+1. Latitude= latitude
+2. Longitude = longitude
+3. AverageTemperature = average temperature
+4. City = city name
+5. Country = country name
 
 ### Step 2
 #### Explore the Data and Cleaning Steps¶
@@ -47,35 +47,38 @@ The 1st dimension table will contain events from the I94 immigration data.
 
 The columns below are to be extracted from the immigration dataframe:
 
-i94yr = 4 digit year
-i94port = 3 character code of destination city
-arrdate = arrival date
-i94mode = 1 digit travel code
-i94mon = numeric month
-i94cit = 3 digit code of origin city
-depdate = departure date
-i94visa = reason for immigration
+1. i94yr = 4 digit year
+2. i94port = 3 character code of destination city
+3. arrdate = arrival date
+4. i94mode = 1 digit travel code
+5. i94mon = numeric month
+6. i94cit = 3 digit code of origin city
+7. depdate = departure date
+8. i94visa = reason for immigration
+
 The 2nd Dimension table will contain city temperature data.
 
 The columns below are to be extracted from the temperature dataframe:
 
-i94port = 3 character code of destination city (mapped from immigration data during cleanup step)
-Latitude= latitude
-Longitude = longitude
-AverageTemperature = average temperature
-City = city name
-Country = country name
+1. i94port = 3 character code of destination city (mapped from immigration data during cleanup step)
+2. Latitude= latitude
+3. Longitude = longitude
+4. AverageTemperature = average temperature
+5. City = city name
+6. Country = country name
+
 The Fact table will contain information from the I94 immigration data which is joined with the city temperature data on i94port:
 
-i94yr = 4 digit year
-i94port = 3 character code of destination city
-arrdate = arrival date
-i94mode = 1 digit travel code
-i94mon = numeric month
-i94cit = 3 digit code of origin city
-depdate = departure date
-i94visa = reason for immigration
-AverageTemperature = average temperature of destination city
+1. i94yr = 4 digit year
+2. i94port = 3 character code of destination city
+3. arrdate = arrival date
+4. i94mode = 1 digit travel code
+5. i94mon = numeric month
+6. i94cit = 3 digit code of origin city
+7. depdate = departure date
+8. i94visa = reason for immigration
+9. AverageTemperature = average temperature of destination city
+
 The tables that are to be created will be saved to Parquet files format partitioned by the city(i94port).
 
 #### 3.2 Mapping Out Data Pipelines
