@@ -4,6 +4,8 @@
 
 In this project our goal is to create an ETL pipeline with the 'I94 immigration data' and 'city temperature data' to create a database that is much optimized for immigration event queries. With the use of this database we can answer questions relating to immigration behavior to destination temperature For example, do people prefer immigrating to warmer places than other places?
 
+### Code is present in the notebook 'Capstone Project Template.ipynb'
+
 ## Steps followed in the project
 
 * Step 1: Scope the Project and Gather Data
