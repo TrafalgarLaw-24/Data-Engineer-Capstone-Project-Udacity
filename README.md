@@ -4,7 +4,7 @@
 
 In this project our goal is to create an ETL pipeline with the 'I94 immigration data' and 'city temperature data' to create a database that is much optimized for immigration event queries. With the use of this database we can answer questions relating to immigration behavior to destination temperature For example, do people prefer immigrating to warmer places than other places?
 
-##Steps followed in the project
+## Steps followed in the project
 
 Step 1: Scope the Project and Gather Data
 Step 2: Explore and Assess the Data
@@ -12,12 +12,12 @@ Step 3: Define the Data Model
 Step 4: Run ETL to Model the Data
 Step 5: Complete Project Write Up
 
-###Step 1: Scope the Project and Gather Data
+### Step 1: Scope the Project and Gather Data
 
-####Scope
+#### Scope
 We are going to aggregate I94 immigration data by destination city to form our 1st Dimension table. Next we are gpoing to aggregate city temperature data by city to form the 2nd Dimension table. The two datasets will be joined on the destination city to form the Fact table. The final database is optimized accordingly to query on immigration events to determine if temperature affects the selection of destination cities. 'Apache Spark' will be used to process the data present.
 
-####Describe and Gather Data
+#### Describe and Gather Data
 This I94 immigration data comes from the US National Tourism and Trade Office and it is provided in SAS7BDAT format. We will be using the attributes such as,
 
 i94cit = 3 digit code of origin city
@@ -37,12 +37,12 @@ AverageTemperature = average temperature
 City = city name
 Country = country name
 
-###Step 2
-####Explore the Data and Cleaning Steps¶
+### Step 2
+#### Explore the Data and Cleaning Steps¶
 As we can see from the dataframe outputs above, many values in i94port column is not normal. so for the I94 immigration data we should drop all the entries where the destination city code i94port is not a valid value such as XXX, 99, etc... which is as described in I94_SAS_Labels_Description.SAS file. And similarly for the temperature data, we should drop all the entries where AverageTemperature is NaN. Also drop all entries with duplicate locations, and then add the i94port of the location in each entry.
 
-###Step 3: Define the Data Model
-####3.1 Conceptual Data Model
+### Step 3: Define the Data Model
+#### 3.1 Conceptual Data Model
 The 1st dimension table will contain events from the I94 immigration data.
 
 The columns below are to be extracted from the immigration dataframe:
@@ -78,7 +78,7 @@ i94visa = reason for immigration
 AverageTemperature = average temperature of destination city
 The tables that are to be created will be saved to Parquet files format partitioned by the city(i94port).
 
-####3.2 Mapping Out Data Pipelines
+#### 3.2 Mapping Out Data Pipelines
 Described below are the pipeline steps to be executed:
 
 Clean the I94 data as mentioned in step 2 to create a Spark dataframe immigration_df for each month present.
@@ -87,14 +87,14 @@ Create immigration dimension table by selecting relevant columns from immigratio
 Create temperature dimension table by selecting relevant columns from temp_df and write to parquet file format partitioned by i94port
 Create fact table by joining immigration and temperature dimension tables on i94port and write to parquet file format partitioned by i94port
 
-###Step 4: Run Pipelines to Model the Data
-####4.1 Create the data model¶
+### Step 4: Run Pipelines to Model the Data
+#### 4.1 Create the data model¶
 We're building the data pipelines to create the data model.
 
-####4.2 Data Quality Checks
+#### 4.2 Data Quality Checks
 This data quality check will ensure that there are adequate number of entries in each table.
 
-###Step 5: Complete Project Write Up
+### Step 5: Complete Project Write Up
 * Clearly state the rationale for the choice of tools and technologies for the project.
 
 Ans: I chose Apache Spark since it has the ability to easily handle multiple file formats including SAS, containing large amounts of data. Spark SQL was used to process the large input files into dataframes and was manipulated via standard SQL join operations to form the additional tables.
